@@ -1,17 +1,37 @@
 import React from 'react';
-// import { Link } from 'react-router-dom';
-import { Card } from 'react-bootstrap'
+import { Card } from 'react-bootstrap';
+// import { useQuery } from '@apollo/client';
+// import { QUERY_MOVIES } from '../../utils/queries';
 
-const MovieList = () => {
+
+
+const MovieList = ( { movies }) => {
+  if (!movies.length) {
+    return <h3>No Thoughts Yet</h3>;
+  }
+  console.log(movies)
+ 
   return (
-  <Card class="card" >
-    <a href='https://www.themoviedb.org/movie/559-spider-man-3?language=en-US' target="_blank" rel="noopener noreferrer">
-      <img src="..." class="card-img-top" alt="..." />
-      <div class="card-body">
-        <p class="card-text">Spiderman</p>
-      </div>
-    </a>
+    <div className='row gy-5'>
+      
+  {movies.map(movie => (
+    <div key={movie.movieUrl} className='col-3'>
+  <Card border='0' className='p-3' >
+    <Card.Body>
+      
+      
+        <a href={movie.movieUrl} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
+          <Card.Img src={movie.moviePicUrl}></Card.Img>
+        <Card.Title>{movie.movieTitle}</Card.Title>
+        <Card.Text>Description</Card.Text>
+          
+        </a>
+      
+    </Card.Body>
   </Card>
+  </div>
+  ))}
+  </div>
   )
 }
 
