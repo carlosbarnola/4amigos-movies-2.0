@@ -113,3 +113,14 @@ export const ADD_REACTION = gql`
     }
   }
 `;
+
+export const QUERY_MOVIES = gql`
+  query movies {
+    movies{
+      _id
+      movieTitle
+      movieUrl
+      moviePicUrl
+    }
+  }
+`;

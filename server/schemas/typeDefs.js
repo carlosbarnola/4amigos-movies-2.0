@@ -32,6 +32,7 @@ const typeDefs = gql`
     _id: ID
     movieTitle: String
     movieUrl: String
+    moviePicUrl: String
   }
 
   type Query {
@@ -51,7 +52,7 @@ const typeDefs = gql`
     addThought(thoughtText: String!): Thought
     addReaction(thoughtId: ID!, reactionBody: String!): Thought
     addFriend(friendId: ID!): User
-    addMovie(movieTitle: String!, movieUrl: String!): Movies
+    addMovie(movieTitle: String!, movieUrl: String!, moviePicUrl: String!): Movies
   }
 
   type Auth {

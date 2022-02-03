@@ -1,10 +1,11 @@
 import { useQuery } from '@apollo/client';
-import { QUERY_THOUGHTS, QUERY_ME_BASIC } from '../utils/queries';
+import { QUERY_THOUGHTS, QUERY_ME_BASIC, QUERY_MOVIES } from '../utils/queries';
 import ThoughtList from '../components/ThoughtList';
 import Auth from '../utils/auth';
 import FriendList from '../components/FriendList';
 import ThoughtForm from '../components/ThoughtForm';
 import MovieList from '../components/MovieList';
+
 
 import React from 'react';
 
@@ -17,11 +18,18 @@ const Home = () => {
   const { data: userData } = useQuery(QUERY_ME_BASIC);
   const thoughts = data?.thoughts || [];
   // console.log(thoughts);
+
+  const { data: movieData } = useQuery(QUERY_MOVIES);
+  const movies = movieData?.movies || [];
   
   return (
-    <main>
-      <MovieList></MovieList>
-      <div className='flex-row justify-space-between'>
+    <main className='my-5'>
+      {/* <div className='container overflow-hidden'> */}
+        <div className='container overflow-hidden'>
+          <MovieList movies={movies}></MovieList>
+        </div>
+      {/* </div> */}
+      {/* <div className='flex-row justify-space-between'>
         {loggedIn && (
           <div className="col-12 mb-3">
             <ThoughtForm />
@@ -43,7 +51,7 @@ const Home = () => {
             />
           </div>
         ) : null}
-      </div>
+      </div> */}
     </main>
   );
 };

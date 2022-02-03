@@ -9,6 +9,10 @@ const movieSchema = new Schema(
     movieUrl: {
       type: String,
       required: true
+    },
+    moviePicUrl: {
+      type: String,
+      required: true
     }
   }
 )
