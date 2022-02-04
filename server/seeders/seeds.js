@@ -1,8 +1,7 @@
-
 const faker = require('faker');
 
 const db = require('../config/connection');
-const { Thought, User, Movies } = require('../models');
+const { User, Movies } = require('../models');
 
 
 db.once('open', async () => {
@@ -42,23 +41,18 @@ db.once('open', async () => {
       movieUrl: 'https://www.themoviedb.org/movie/624860-the-matrix-resurrections?language=en-US',
       moviePicUrl: 'https://www.themoviedb.org/t/p/w600_and_h900_bestv2/8c4a8kE7PizaGQQnditMmI1xbRp.jpg'
     },
-    
+    {
+      movieTitle: 'The Ice Age Adventures of Buck Wild',
+      movieUrl: 'https://www.themoviedb.org/movie/774825-the-ice-age-adventures-of-buck-wild?language=en-US',
+      moviePicUrl: 'https://www.themoviedb.org/t/p/w600_and_h900_bestv2/zzXFM4FKDG7l1ufrAkwQYv2xvnh.jpg'
+    },
+    {
+      movieTitle: 'Red Notice',
+      movieUrl: 'https://www.themoviedb.org/movie/512195-red-notice?language=en-US',
+      moviePicUrl: 'https://www.themoviedb.org/t/p/w600_and_h900_bestv2/lAXONuqg41NwUMuzMiFvicDET9Y.jpg'
+    },
   ]
 
- // create movie data
-//  const movieData = [];
-//  for (let i = 0; i < 50; i += 1) {
-//    const externalMovieId = faker.random.number();
-//    const rating = faker.random.number({ 'min': 0, 'max': 10 });
-//    const voteCount = faker.random.number();
-//    const title = faker.commerce.productName();
-//    const overview = faker.lorem.words(Math.round(Math.random() * 20) + 1);
-//    const releaseDate = faker.date.past();
-//    const poster = faker.image.imageUrl();
-//    const trailer = faker.image.imageUrl();
-//    // store the movies
-//    movieData.push({ externalMovieId, rating, voteCount, title, overview, releaseDate, poster, trailer });
-//  }
  const createdMovies = await Movies.collection.insertMany(movieData);
 
 
@@ -75,18 +69,7 @@ db.once('open', async () => {
 
   const createdUsers = await User.collection.insertMany(userData);
 
- // create friends
- for (let i = 0; i < 100; i += 1) {
-  const randomUserIndex = Math.floor(Math.random() * createdUsers.ops.length);
-  const { _id: userId } = createdUsers.ops[randomUserIndex];
-  let friendId = userId;
-  while (friendId === userId) {
-    const randomUserIndex = Math.floor(Math.random() * createdUsers.ops.length);
-    friendId = createdUsers.ops[randomUserIndex];
-  }
-  // add the friend to User.friends
-  await User.updateOne({ _id: userId }, { $addToSet: { friends: friendId } });
-}
+
 // create likedMovies
 for (let i = 0; i < 100; i += 1) {
   const randomUserIndex = Math.floor(Math.random() * createdUsers.ops.length);

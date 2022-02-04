@@ -1,41 +1,5 @@
 import { gql } from '@apollo/client';
 
-export const QUERY_THOUGHTS = gql`
-  query thoughts($username: String) {
-    thoughts(username: $username) {
-      _id
-      thoughtText
-      createdAt
-      username
-      reactionCount
-      reactions {
-        _id
-        createdAt
-        username
-        reactionBody
-      }
-    }
-  }
-`;
-
-export const QUERY_THOUGHT = gql`
-  query thought($id: ID!) {
-    thought(_id: $id) {
-      _id
-      thoughtText
-      createdAt
-      username
-      reactionCount
-      reactions {
-        _id
-        createdAt
-        username
-        reactionBody
-      }
-    }
-  }
-`;
-
 export const QUERY_USER = gql`
   query user($username: String!) {
     user(username: $username) {
@@ -57,63 +21,6 @@ export const QUERY_USER = gql`
   }
 `;
 
-export const QUERY_ME = gql`
-  {
-    me {
-      _id
-      username
-      email
-      friendCount
-      thoughts {
-        _id
-        thoughtText
-        createdAt
-        reactionCount
-        reactions {
-          _id
-          createdAt
-          reactionBody
-          username
-        }
-      }
-      friends {
-        _id
-        username
-      }
-    }
-  }
-`;
-
-export const QUERY_ME_BASIC = gql`
-  {
-    me {
-      _id
-      username
-      email
-      friendCount
-      friends {
-        _id
-        username
-      }
-    }
-  }
-`;
-
-export const ADD_REACTION = gql`
-  mutation addReaction($thoughtId: ID!, $reactionBody: String!) {
-    addReaction(thoughtId: $thoughtId, reactionBody: $reactionBody) {
-      _id
-      reactionCount
-      reactions {
-        _id
-        reactionBody
-        createdAt
-        username
-      }
-    }
-  }
-`;
-
 export const QUERY_MOVIES = gql`
   query movies {
     movies{
@@ -124,3 +31,14 @@ export const QUERY_MOVIES = gql`
     }
   }
 `;
+
+export const QUERY_MOVIE = gql`
+query movie($id: ID) {
+  movie(_id: $id) {
+    _id
+    movieTitle
+    movieUrl
+    moviePicUrl   
+  }
+}
+`
