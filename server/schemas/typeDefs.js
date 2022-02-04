@@ -35,6 +35,13 @@ const typeDefs = gql`
     moviePicUrl: String
   }
 
+  type Review {
+    _id: ID
+    reviewBody: String
+    username: String
+    createAt: String
+  }
+
   type Query {
     me: User
     users: [User]
@@ -42,7 +49,7 @@ const typeDefs = gql`
     thoughts(username: String): [Thought]
     thought(_id: ID!): Thought
     movies: [Movies]
-    movie(movieTitle: String): Movies
+    movie(_id: ID): Movies
  
   }
 

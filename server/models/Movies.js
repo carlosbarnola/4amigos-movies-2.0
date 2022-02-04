@@ -1,4 +1,6 @@
 const { Schema, model } = require('mongoose');
+const reviewSchema = require('./Review')
+
 
 const movieSchema = new Schema(
   {
@@ -13,7 +15,8 @@ const movieSchema = new Schema(
     moviePicUrl: {
       type: String,
       required: true
-    }
+    },
+    reviews: [reviewSchema]
   }
 )
 
